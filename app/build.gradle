@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.1.RELEASE")
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.1.RELEASE"
     }
 }
 
@@ -20,7 +20,7 @@ apply plugin: 'io.spring.dependency-management'
 
 bootJar {
     baseName = 'gs-spring-boot'
-    version =  '0.1.0'
+    version = '0.1.0'
 }
 
 repositories {
@@ -35,16 +35,15 @@ configurations {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
-    compile("org.springframework.boot:spring-boot-starter-web:2.1.1.RELEASE")
-    compile("org.springframework.boot:spring-boot-starter-actuator:2.1.1.RELEASE")
+    def springVersion = '2.1.1.RELEASE'
+    compile("org.springframework.boot:spring-boot-starter-web:${springVersion}")
+    compile("org.springframework.boot:spring-boot-starter-actuator:${springVersion}")
+    developmentOnly("org.springframework.boot:spring-boot-devtools:${springVersion}")
     testCompile("junit:junit")
-    testCompile("org.springframework.boot:spring-boot-starter-test:2.1.1.RELEASE")
-    developmentOnly("org.springframework.boot:spring-boot-devtools:2.1.1.RELEASE")
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springVersion}")
 }
 
 springBoot {
     // https://docs.spring.io/spring-boot/docs/current/reference/html/howto-build.html#howto-build-info
     buildInfo()
 }
-
