@@ -8,6 +8,8 @@
 
 Following along the [Spring Boot Guide](https://spring.io/guides/gs/spring-boot/#scratch).
 
+- Built with JDK11, running on JDK12, so improved [docker container integration](https://blog.docker.com/2018/12/top-5-post-docker-container-java/)
+
 ## Build, Run, Test
 
 Build & run using [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html)

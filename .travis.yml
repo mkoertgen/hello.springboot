@@ -1,5 +1,5 @@
 language: java
-jdk: ['oraclejdk8']
+jdk: ['openjdk11']
 before_install: cd app
 install: gradle wrapper --gradle-version 5.0
 script: ./gradlew --no-daemon --console=plain check

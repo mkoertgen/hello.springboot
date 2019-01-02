@@ -1,5 +1,5 @@
-ARG BUILDER_BASE=gradle:5.0.0-jdk8-alpine
-ARG DOCKER_BASE=openjdk:8u181-jre-alpine3.8
+ARG BUILDER_BASE=gradle:5.0.0-jdk11-slim
+ARG DOCKER_BASE=openjdk:12-ea-25-jdk-alpine3.8
 FROM ${BUILDER_BASE} as builder
 
 # NOTE: unusually using ./ as build context so we can use .git info in gradle

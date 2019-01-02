@@ -11,8 +11,8 @@ x-noproxy: &no_proxy
 
 x-buildargs: &buildargs
   GIT_COMMIT: ${CI_COMMIT_SHA:-git_commit}
-  BUILDER_BASE: gradle:5.0.0-jdk8-alpine
-  DOCKER_BASE: openjdk:8u181-jre-alpine3.8
+  BUILDER_BASE: gradle:5.0.0-jdk11-slim
+  DOCKER_BASE: openjdk:12-ea-25-jdk-alpine3.8
 
 x-logging: &logging
   driver: 'json-file'
