@@ -1,5 +1,7 @@
 # hello.springboot
 
+Following along the [Spring Boot Guide](https://spring.io/guides/gs/spring-boot/#scratch).
+
 ## Build, Run, Test
 
 Build & run
