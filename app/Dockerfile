@@ -1,15 +1,18 @@
-ARG BUILDER_BASE=gradle:5.0.0-jre8-alpine
-ARG DOCKER_BASE=java:8u181-jre-alpine3.8
+ARG BUILDER_BASE=gradle:5.0.0-jdk8-alpine
+ARG DOCKER_BASE=openjdk:8u181-jre-alpine3.8
 FROM ${BUILDER_BASE} as builder
 
-COPY . /usr/src/app/
+# NOTE: unusually using ./ as build context so we can use .git info in gradle
+COPY .git/ app/ /usr/src/app/
 WORKDIR /usr/src/app
-RUN gradlew build
+# NOTE: cannot build with user `gradle`, cf.:  https://github.com/keeganwitt/docker-gradle/issues/57
+USER root
+RUN gradle --no-daemon build
 
 #------
 FROM ${DOCKER_BASE}
 
-COPY --from=builder ${APP}/build/libs/gs-spring-boot-0.1.0.jar /usr/src/app/
+COPY --from=builder /usr/src/app/build/libs/gs-spring-boot-0.1.0.jar /usr/src/app/
 WORKDIR /usr/src/app
 
 # TODO
