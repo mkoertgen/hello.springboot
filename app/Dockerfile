@@ -7,7 +7,7 @@ COPY .git/ app/ /usr/src/app/
 WORKDIR /usr/src/app
 # NOTE: cannot build with user `gradle`, cf.:  https://github.com/keeganwitt/docker-gradle/issues/57
 USER root
-RUN gradle --no-daemon build
+RUN gradle build
 
 #------
 FROM ${DOCKER_BASE}
