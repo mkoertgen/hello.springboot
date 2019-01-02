@@ -7,6 +7,11 @@ buildscript {
     }
 }
 
+plugins {
+    // https://docs.spring.io/spring-boot/docs/current/reference/html/howto-build.html#howto-git-info
+    id "com.gorylenko.gradle-git-properties" version "1.5.1"
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
@@ -39,3 +44,9 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 }
+
+springBoot {
+    // https://docs.spring.io/spring-boot/docs/current/reference/html/howto-build.html#howto-build-info
+    buildInfo()
+}
+
