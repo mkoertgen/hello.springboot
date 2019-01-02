@@ -1,0 +1,38 @@
+version: '3.4'
+
+#### common partials (needs docker-compose v3.4)
+x-proxy: &proxy
+  http_proxy: ${http_proxy:-}
+  https_proxy: ${https_proxy:-}
+  no_proxy: ${no_proxy:-}
+
+x-noproxy: &no_proxy
+  http_proxy: '' # disable Docker for Windows auto-proxy (no_proxy especially)
+
+x-buildargs: &buildargs
+  GIT_COMMIT: ${CI_COMMIT_SHA:-git_commit}
+  BUILDER_BASE: gradle:5.0.0-jre8-alpine
+  DOCKER_BASE: java:8u181-jre-alpine3.8
+
+x-logging: &logging
+  driver: 'json-file'
+  options:
+    max-size: '10m'
+    max-file: '5'
+
+x-base: &base
+  build:
+    args:
+      <<: *proxy
+      <<: *buildargs
+  environment:
+    <<: *proxy
+  logging:
+    <<: *logging
+
+services:
+  app:
+    <<: *base
+    build:
+      context: app/
+    ports: ['8080:8080']

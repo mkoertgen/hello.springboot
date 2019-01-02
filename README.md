@@ -20,10 +20,10 @@ Greetings from Spring Boot!
 Review [application.properties](src/main/resources/application.properties) and test actuator endpoints
 
 ```console
-$curl localhost:8081/actuator/health
+$curl localhost:8080/actuator/health
 {"status":"UP"}
 
-$curl localhost:8081/actuator/info
+$curl localhost:8080/actuator/info
 {}
 
 $curl -X POST localhost:8081/actuator/shutdown
