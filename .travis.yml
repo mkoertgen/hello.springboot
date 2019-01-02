@@ -1,5 +1,8 @@
-language: java
-jdk: ['openjdk11']
-before_install: cd app
-install: gradle wrapper --gradle-version 5.0
-script: ./gradlew --no-daemon --console=plain check
+sudo: required
+
+services:
+  - docker
+
+install: true
+script:
+  - ./build.sh

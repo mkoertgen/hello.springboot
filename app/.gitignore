@@ -1,10 +1,7 @@
-# IntelliJ
-.idea/
-*.iml
-out/
-
-# VSCode
-.vscode/
+# Java
+*.class
+*.jar
+hs_err_pid*
 
 # Gradle
 .gradle/
@@ -19,7 +16,10 @@ gradle/wrapper/gradle-wrapper.properties
 .project
 .settings/
 
-# Java
-*.class
-*.jar
-hs_err_pid*
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# VSCode
+.vscode/
