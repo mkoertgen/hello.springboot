@@ -1,0 +1,24 @@
+# IntelliJ
+.idea/
+*.iml
+
+# VSCode
+.vscode/
+
+# Gradle
+.gradle/
+/build/
+!gradle-wrapper.jar
+.gradletasknamecache
+# Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+gradle/wrapper/gradle-wrapper.properties
+
+# Eclipse project files
+.classpath
+.project
+.settings/
+
+# Java
+*.class
+*.jar
+hs_err_pid*
