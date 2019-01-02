@@ -1,5 +1,11 @@
 # hello.springboot
 
+<!-- shields not using travis-ci.com but only travis-ci.org yet
+[![Build status](https://img.shields.io/travis/mkoertgen/hello.springboot.svg?logo=travis)](https://travis-ci.com/mkoertgen/hello.springboot/) -->
+[![Build status](https://travis-ci.com/mkoertgen/hello.springboot.svg?branch=master)](https://travis-ci.com/mkoertgen/hello.springboot/)
+[![GitHub issues](https://img.shields.io/github/issues/mkoertgen/hello.springboot.svg?logo=github "GitHub issues")](https://github.com/mkoertgen/hello.springboot)
+[![GitHub stars](https://img.shields.io/github/stars/mkoertgen/hello.springboot.svg?logo=github "GitHub stars")](https://github.com/mkoertgen/hello.springboot)
+
 Following along the [Spring Boot Guide](https://spring.io/guides/gs/spring-boot/#scratch).
 
 ## Build, Run, Test
