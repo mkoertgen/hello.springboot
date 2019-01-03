@@ -6,9 +6,11 @@
 [![GitHub issues](https://img.shields.io/github/issues/mkoertgen/hello.springboot.svg?logo=github "GitHub issues")](https://github.com/mkoertgen/hello.springboot)
 [![GitHub stars](https://img.shields.io/github/stars/mkoertgen/hello.springboot.svg?logo=github "GitHub stars")](https://github.com/mkoertgen/hello.springboot)
 
-Following along the [Spring Boot Guide](https://spring.io/guides/gs/spring-boot/#scratch).
+Following along some [Spring Boot Guides](https://spring.io/guides).
 
 - Built with JDK11, running on JDK12, so improved [docker container integration](https://blog.docker.com/2018/12/top-5-post-docker-container-java/)
+- [Spring Cloud Config](http://spring.io/projects/spring-cloud-config)-server example
+- [SOAP web service](https://spring.io/guides/gs/producing-web-service/) example
 
 ## Build, Run, Test
 
@@ -61,3 +63,13 @@ Test the backend via
 - [http://localhost:8888/{application}/{profile}](http://localhost:8888/app/dev)
 - [http://localhost:8888/{application}-{profile}.yml](http://localhost:8888/app-dev.yml)
 - [http://localhost:8888/{application}-{profile}.properties](http://localhost:8888/app-dev.properties)
+
+## SOAP Example
+
+Test the SOAP endpoint using [examples/request.xml](examples/request.xml)
+
+```console
+curl -H "content-type: text/xml" -d @examples/request.xml http://localhost:8080/ws
+```
+
+and you should get back something like [examples/response.xml](examples/response.xml).

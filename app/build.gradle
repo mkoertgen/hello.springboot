@@ -11,31 +11,55 @@ buildscript {
 	}
 }
 
+plugins {
+	id "org.openrepose.gradle.plugins.jaxb" version "2.5.0"
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-group = System.env.APP_NAME ?: 'app'
-version = System.env.DOCKER_TAG ?: '0.1.0'
+def appName = System.env.APP_NAME ?: 'app'
+def appVersion = System.env.APP_VERSION ?: '0.1.0'
+group = appName
+version = appVersion
 //sourceCompatibility = 11.1
 
-repositories {
-	mavenCentral()
+bootJar {
+	baseName = appName
+	version =  appVersion
 }
 
-configurations {
-	developmentOnly
-	runtimeClasspath {
-		extendsFrom developmentOnly
-	}
+repositories {
+	jcenter()
 }
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     testCompile('org.springframework.boot:spring-boot-starter-test')
-	developmentOnly('org.springframework.boot:spring-boot-devtools')
+	compile('org.springframework.boot:spring-boot-devtools')
     compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile("org.springframework.cloud:spring-cloud-starter-config:${springCloudVersion}")
+	compile('org.springframework.boot:spring-boot-starter-web-services')
+	compile('wsdl4j:wsdl4j:1.6.3')
+	compile('org.glassfish.jaxb:jaxb-runtime:2.3.1') // java 11, cf.: https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-with-Java-9-and-above#jaxb
+	jaxb('org.glassfish.jaxb:jaxb-xjc:2.3.1')
+	jaxb('org.glassfish.jaxb:jaxb-runtime:2.3.1')
+}
+
+def generatedDir = "${project.buildDir}/generated-sources/xjc"
+jaxb {
+	xjc {
+		destinationDir = "$generatedDir"
+	}
+}
+tasks.withType(JavaCompile) { dependsOn('xjc') }
+sourceSets {
+	main {
+		java {
+			srcDirs += "$generatedDir"
+		}
+	}
 }
