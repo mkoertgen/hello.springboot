@@ -17,8 +17,8 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-group = System.env.APP_NAME ?: 'config-server'
-version = System.env.APP_VERSION ?: '0.1.0'
+group = System.env.ARTIFACT_NAME ?: 'config-server'
+version = System.env.ARTIFACT_VERSION ?: '0.1.0'
 //sourceCompatibility = 11.1
 
 repositories {

@@ -21,8 +21,8 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-def appName = System.env.APP_NAME ?: 'app'
-def appVersion = System.env.APP_VERSION ?: '0.1.0'
+def appName = System.env.ARTIFACT_NAME ?: 'app'
+def appVersion = System.env.ARTIFACT_VERSION ?: '0.1.0'
 group = appName
 version = appVersion
 //sourceCompatibility = 11.1

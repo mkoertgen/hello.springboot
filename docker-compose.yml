@@ -3,7 +3,7 @@ version: '3.4'
 x-build-args: &build_args
   BUILDER_BASE: gradle:5.0.0-jdk11-slim
   DOCKER_BASE: openjdk:12-ea-25-jdk-alpine3.8
-  APP_VERSION: ${APP_VERSION:-0.1.0}
+  ARTIFACT_VERSION: ${ARTIFACT_VERSION:-0.1.0}
   VCS_REF: ${VCS_REF:-git_commit}
   BUILD_DATE: ${BUILD_DATE:-build_date}
 
@@ -24,7 +24,7 @@ services:
       context: app/
       args:
         <<: *build_args
-        APP_NAME: 'app'
+        ARTIFACT_NAME: 'app'
     ports: ['8080:8080']
 
   config-server:
@@ -33,5 +33,5 @@ services:
       context: config-server/
       args:
         <<: *build_args
-        APP_NAME: 'config-server'
+        ARTIFACT_NAME: 'config-server'
     ports: ['8088:8088']
