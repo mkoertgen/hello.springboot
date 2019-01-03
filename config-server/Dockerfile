@@ -39,6 +39,6 @@ LABEL author="My Company <first.last@company.com>"\
   org.label-schema.schema-version="1.0" \
   org.label-schema.docker.cmd="docker run ${OWNER_REPO}:${APP_VERSION}"
 
-EXPOSE 8088
+EXPOSE 8080
 
 CMD ["java", "-jar", "${APP_NAME}-${APP_VERSION}.jar"]

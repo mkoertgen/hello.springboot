@@ -1,19 +1,37 @@
 version: '3.4'
 
+x-build-args: &build_args
+  BUILDER_BASE: gradle:5.0.0-jdk11-slim
+  DOCKER_BASE: openjdk:12-ea-25-jdk-alpine3.8
+  APP_VERSION: ${APP_VERSION:-0.1.0}
+  VCS_REF: ${VCS_REF:-git_commit}
+  BUILD_DATE: ${BUILD_DATE:-build_date}
+
+x-logging: &logging
+  driver: 'json-file'
+  options:
+    max-size: '10m'
+    max-file: '5'
+
+x-base: &base
+  logging:
+    <<: *logging
+
 services:
   app:
-    build: # NOTE: unusually using ./ as build context so we can use .git info in gradle
-      context: ./
-      dockerfile: app/Dockerfile
+    <<: *base
+    build:
+      context: app/
       args:
-        BUILDER_BASE: gradle:5.0.0-jdk11-slim
-        DOCKER_BASE: openjdk:12-ea-25-jdk-alpine3.8
-        VCS_REF: ${VCS_REF:-git_commit}
-        BUILD_DATE: ${BUILD_DATE:-build_date}
-        DOCKER_TAG: ${DOCKER_TAG:-0.1.0}
+        <<: *build_args
+        APP_NAME: 'app'
     ports: ['8080:8080']
-    logging:
-      driver: 'json-file'
-      options:
-        max-size: '10m'
-        max-file: '5'
+
+  config-server:
+    <<: *base
+    build:
+      context: config-server/
+      args:
+        <<: *build_args
+        APP_NAME: 'config-server'
+    ports: ['8088:8088']
