@@ -16,14 +16,14 @@ RUN gradle build
 FROM ${DOCKER_BASE}
 
 ARG ARTIFACT_NAME="config-server"
+ARG ARTIFACT_VERSION="0.1.0"
 ARG VCS_REF="unknown"
 ARG BUILD_DATE="unknown"
-ARG ARTIFACT_VERSION="0.1.0"
 ARG VENDOR="My Company"
 ARG OWNER_REPO="owner/repository"
 ARG DESCRIPTION="My Description"
 
-COPY --from=builder /usr/src/app/build/libs/${ARTIFACT_NAME}-${ARTIFACT_VERSION}.jar /usr/src/app/
+COPY --from=builder /usr/src/app/build/libs/${ARTIFACT_NAME}-${ARTIFACT_VERSION}.jar /usr/src/app/app.jar
 WORKDIR /usr/src/app
 
 LABEL author="My Company <first.last@company.com>"\
@@ -41,4 +41,4 @@ LABEL author="My Company <first.last@company.com>"\
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "${ARTIFACT_NAME}-${ARTIFACT_VERSION}.jar"]
+CMD ["java", "-jar", "app.jar"]
